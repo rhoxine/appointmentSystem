@@ -1,7 +1,7 @@
+{{-- homepage without Appointment and Contact page --}}
 @extends('templates.home_template')
 @section('content')
-    @include('templates.navbar_template')
-
+    @include('templates.home_navbar')
 
 
     <div class="image-container">

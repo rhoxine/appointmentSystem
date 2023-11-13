@@ -42,9 +42,14 @@
                                                 <label class="form-label" for="typeText">Username</label>
                                             </div>
                                             <div class="form-outline mt-3">
-                                                <input type="password" name="password" id="typePassword"
+                                                <input type="password" name="confirm_password" id="typePassword"
                                                     class="form-control" />
                                                 <label class="form-label" for="typePassword">Password</label>
+                                            </div>
+                                            <div class="form-outline mt-3">
+                                                <input type="password" name="password" id="typePassword"
+                                                    class="form-control" />
+                                                <label class="form-label" for="typePassword">Confirm Password</label>
                                             </div>
                                             <div>
                                                 <select class="form-select mt-3" name="user_type"

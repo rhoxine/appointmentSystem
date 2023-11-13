@@ -81,8 +81,8 @@
                                 <td>{{ $service->service_fee }}</td>
 
                                 <td>
-                                    <a href="{{ route('services.edit', ['service_id' => $service->service_id]) }}"
-                                        class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#editServiceModal">
+                                    <a href="#" class="btn btn-primary" data-mdb-toggle="modal"
+                                        data-mdb-target="#editServiceModal{{ $service->service_id }}">
                                         <i class="fa fa-edit"></i>
                                     </a>
 
@@ -97,7 +97,48 @@
                             <?php $count++; ?>
                         @endforeach
 
+
+
                         @foreach ($services as $service)
+                            <div class="modal fade" id="editServiceModal{{ $service->service_id }}" tabindex="-1"
+                                aria-labelledby="editServiceModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editServiceModalLabel">Edit Service</h5>
+                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('services.update', ['id' => $service->service_id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <input type="hidden" name="service_id" value="{{ $service->service_id }}">
+                                                <div class="form-outline">
+                                                    <input type="text" name="service" value="{{ $service->service }}"
+                                                        id="typeText" class="form-control" />
+                                                    <label class="form-label" for="typeText">Service</label>
+                                                </div>
+                                                <div class="form-outline mt-3">
+                                                    <input type="number" name="service_fee"
+                                                        value="{{ $service->service_fee }}" id="typeText"
+                                                        class="form-control" />
+                                                    <label class="form-label" for="typeText">Service Fee</label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-mdb-dismiss="modal">Cancel</button>
+                                                <button type="submit" name="submit"
+                                                    class="btn btn-primary">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        {{-- @foreach ($services as $service)
                             <div class="modal fade" id="editServiceModal" tabindex="-1"
                                 aria-labelledby="editServiceModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -136,7 +177,7 @@
                                     </form>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach --}}
 
                     </tbody>
                 </table>

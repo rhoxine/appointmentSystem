@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('client_id');
+            $table->integer('user_id');
             $table->date('appointment_date');
             $table->string('owner_name');
             $table->string('pet_type');

@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('username');
             $table->string('password');
+            $table->string('confirm_password');
             $table->string('user_type');
-            $table->binary('profile');
+            $table->binary('profile')->nullable();
             $table->timestamps();
         });
     }

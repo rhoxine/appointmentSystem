@@ -5,7 +5,7 @@
         <div class="img-container">
             <img src="images/vet clinic.png" class="w-75">
         </div>
-        <form action="" method="POST">
+        <form action="/usercreated" method="POST">
             @csrf
             <div class="row mb-2">
                 <div class="col">
@@ -30,6 +30,9 @@
                 </div>
             </div>
 
+            <!-- User Type input (hidden) -->
+            <input type="hidden" name="user_type" value="user">
+
             <!-- Username input -->
             <div class="form-outline mt-2">
                 <input type="text" name="username" value="{{ old('username') }}" id="form3Example3"
@@ -52,8 +55,8 @@
 
             <!-- Confirm Password input -->
             <div class="form-outline mt-2">
-                <input type="password" name="confirmpass" value="{{ old('confirmpass') }}" id="form3Example4"
-                    class="form-control @error('confirmpass') is-invalid @enderror" />
+                <input type="password" name="confirm_password" value="{{ old('confirm_password') }}" id="form3Example4"
+                    class="form-control @error('confirm_password') is-invalid @enderror" />
                 <label class="form-label" for="form3Example4">Confirm Password</label>
             </div>
             @error('confirmpass')
@@ -64,6 +67,8 @@
                 <div class="col-mb-4">
                     <button type="submit" name="submit" class="btn btn-primary">Sign up</button>
                 </div>
+                <input type="hidden" name="profile" value="default_profile_value">
+
                 <div class="col-mb-4">
                     <p>Already have an account?
                         <a href="/login_page">Login</a>

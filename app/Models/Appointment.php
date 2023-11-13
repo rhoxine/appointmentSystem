@@ -11,6 +11,7 @@ class Appointment extends Model
     protected $primaryKey = 'client_id';
     protected $fillable= [
         'client_id',
+        'user_id',
         'appointment_date',
         'owner_name',
         'pet_type',

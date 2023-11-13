@@ -52,7 +52,7 @@
                                 <td>
                                     <a class="btn btn-primary "
                                         href="{{ route('admin_side/edit_client_status', ['client_id' => $appointment->client_id]) }}">
-                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                     <a class="btn btn-danger " data-bs-toggle="modal" data-mdb-target="" href="">
                                         <i class="fa fa-trash"></i>

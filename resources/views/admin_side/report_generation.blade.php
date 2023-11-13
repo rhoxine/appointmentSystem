@@ -41,8 +41,7 @@
                             <th>Owner Name</th>
                             <th>Pet Type</th>
                             <th>Breed</th>
-                            <th>Age</th>
-                            <th></th>
+                            <th>Age</th>       
                         </tr>
                     </thead>
                     <tbody>
@@ -53,9 +52,6 @@
                                 <td>{{ $appointment->pet_type }}</td>
                                 <td>{{ $appointment->breed }}</td>
                                 <td>{{ $appointment->age }}</td>
-                                <td>
-                                    <!-- Actions -->
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

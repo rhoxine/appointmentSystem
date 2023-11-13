@@ -14,12 +14,10 @@ class CategoryController extends Controller
     }
     public function store(Request $request)
     {
-        // Validate the input data (add validation rules as needed)
         $request->validate([
             'category_name' => 'required',
         ]);
 
-        // Create a new appointment record in the database
         $category = new Category();
         $category->category_name = $request->input('category_name');
 
@@ -33,7 +31,6 @@ class CategoryController extends Controller
         return view('admin_side.category', compact('categories'));
     }
 
-    //populate the category field with categories from added categories
     public function showCategoryForm()
     {
         $categories = Category::all();
@@ -42,7 +39,6 @@ class CategoryController extends Controller
 
     public function destroy($category_id)
     {
-        // Find the category by its ID
         $category = Category::find($category_id);
 
         // Check if the category exists
@@ -52,6 +48,30 @@ class CategoryController extends Controller
             return redirect()->back()->with('success', 'Category deleted successfully');
         } else {
             return redirect()->back()->with('error', 'Category not found');
+        }
+    }
+
+
+    public function edit($service_id)
+    {
+        // $service = DB::select("SELECT * FROM services WHERE service_id = ?", [$service_id]);
+        $service = Category::find($service_id);
+        return view('services.edit', compact('service'));
+    }
+
+
+    public function update(Request $request, $category_id)
+    {
+        $categories = Category::find($category_id);
+
+        if ($categories) {
+            $categories->category_name = $request->input('category_name');
+
+            $categories->save();
+
+            return redirect('/category')->with('success', 'Category updated successfully');
+        } else {
+            return redirect('/category')->with('error', 'Category not found');
         }
     }
 

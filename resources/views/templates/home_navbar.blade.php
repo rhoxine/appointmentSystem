@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Document</title>
@@ -38,12 +37,10 @@
 </style>
 
 
-
 <nav class="navbar sticky-top navbar-expand-lg nav ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('images/cliniclogo.png') }}" class="img-fluid banner" alt="Clinic Logo"> Kingdom Animalia
-        </a>
+            <a class="navbar-brand" href="#"><img src="images/cliniclogo.png" class="img-fluid banner">Kingdom
+                Animalia</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +52,7 @@
                     <a class="nav-link" aria-current="page" href="/home">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/appointment">APPOINTMENT</a>
+                    <a class="nav-link" href="/book">APPOINTMENT</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">CONTACT US</a>
@@ -66,23 +63,13 @@
             </ul>
         </div>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false" style="margin-right: 50px;">
-                @auth
-                    {{ Auth::user()->username }}
-                @endauth
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('client.appointments') }}">My Appointments</a></li>
-                <li><a class="dropdown-item" href="#">Account</a></li>
-                <form id="logoutForm" method="post" action="{{ route('logout') }}">
-                    @csrf
-                    <li><a class="dropdown-item" href="#"
-                            onclick="document.getElementById('logoutForm').submit();">
-                            Logout<i class="fa-solid fa-right-from-bracket" style="float: right; margin-top: 5px;"></i></a></li>
-                </form>
-            </ul>
+        <div class="ml-auto">
+            <a class="btn btn-secondary btn-sm px-3 me-2" href="/login_page">
+                Login
+            </a>
+            <a class="btn btn-primary btn-sm me-3" href="/register">
+                Sign Up
+            </a>
         </div>
     </div>
 </nav>

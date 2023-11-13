@@ -69,6 +69,14 @@
         transform: scale(1.03);
     }
 
+
+    .appointment-border {
+        border: 2px solid #333; 
+        border-radius: 10px; 
+        padding: 10px; 
+        margin: 8px; 
+    }
+
     .card img{
         height: 200px;
         margin-bottom: 25px;

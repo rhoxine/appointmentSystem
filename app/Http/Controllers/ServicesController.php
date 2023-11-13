@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\Services;
 use App\Models\Category;
@@ -37,7 +37,7 @@ class ServicesController extends Controller
     public function get_services()
     {
         $services = Services::all();
-        $categories = Category::all(); // Fetch categories here
+        $categories = Category::all();
 
         return view('admin_side.services', compact('services', 'categories'));
     }
@@ -59,8 +59,7 @@ class ServicesController extends Controller
 
     public function edit($service_id)
     {
-        $service = DB::select("SELECT * FROM services WHERE service_id = ?", [$service_id]);
-
+        $service = Services::find($service_id);
         return view('services.edit', compact('service'));
     }
 

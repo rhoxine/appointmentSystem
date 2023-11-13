@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReportGenerationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,21 @@ use App\Http\Controllers\CategoryController;
 */
 
 
+
+
+Route::get('/homepage', function () {
+    return view('client_side/home');
+});
+
+// routes/web.php
+
+Route::post('/logout', [AuthenticateController::class, 'logout'])->name('logout');
+
+
+
+Route::get('/book', function () {
+    return view('client_side/book_calendar');
+});
 
 // viewspages
 Route::get('/home', function () {
@@ -44,20 +61,22 @@ Route::get('/inquiries', function () {
 });
 
 
+Route::get('/my_appointments', function () {
+    return view('client_side/my_appointments');
+});
+
 Route::get('/appointments/{client_id}', [AppointmentController::class, 'showDetails'])->name('admin_side/edit_client_status');
 Route::post('/update-status/{client_id}', [AppointmentController::class, 'updateStatus'])->name('update_status');
 
 
-Route::get('/admin_login', function(){
-    return view('admin_side/login');
-});
-
 Route::get('/register', [AuthenticateController::class, 'show']);
-Route::post('/register', [AuthenticateController::class, 'store']);
+Route::post('/usercreated', [AuthenticateController::class, 'store']);
 
 
 Route::get('/login_page', [AuthenticateController::class, 'show_login']);
 Route::post('/login_page', [AuthenticateController::class, 'check_login']);
+
+Route::get('/admin_side/list_appointments', [AppointmentController::class, 'get_appointments'])->name('admin_side.list_appointments');
 
 
 //calendar view 
@@ -67,7 +86,7 @@ Route::get('appointment', [CalendarController::class, 'showCalendar'])->name('cl
 Route::get('/users', [UserController::class, 'get_users']);
 
 //adding user
-Route::post('/adduser', [UserController::class, 'store']);
+Route::post('/adduser', [UserController::class, 'store_staff']);
 
 //deleting a user
 Route::get('/users/{user_id}/delete', [UserController::class, 'destroy'])->name('users.delete');
@@ -76,8 +95,7 @@ Route::get('/users/{user_id}/delete', [UserController::class, 'destroy'])->name(
 Route::get('/users/edit/{user_id}', [UserController::class, 'edit'])->name('users.edit');
 Route::post('/users/update{id}', [UserController::class, 'update'])->name('users.update');
 
-
-//return the users views
+//return the users views get the services from dropdown
 Route::get('/services', [ServicesController::class, 'get_services']);
 
 //adding service
@@ -94,8 +112,12 @@ Route::get('/category', [CategoryController::class, 'get_categories']);
 Route::get('/category/{category_id}/delete', [CategoryController::class, 'destroy'])->name('category.delete');
 
 
+Route::get('/category/{category_id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::post('/category/update{id}', [CategoryController::class, 'update'])->name('category.update');
+
+
 Route::get('/appointment', [AppointmentController::class, 'showAppointmentForm']);
-Route::post('/appointment',[AppointmentController::class, 'store_appointment'])->name('appointment.store');
+Route::post('/appointment', [AppointmentController::class, 'store_appointment'])->name('appointment.store');
 
 Route::get('/admin', [AppointmentController::class, 'get_appointments'])->name('client_side.list_appointments');
 
@@ -103,6 +125,8 @@ Route::get('/admin', [AppointmentController::class, 'get_appointments'])->name('
 Route::get('/list_appointments', [AppointmentController::class, 'get_appointments']);
 
 
-Route::get('/generate-report', [AppointmentController::class, 'generateReport'])->name('generate_report');
-Route::post('/generate-report', [AppointmentController::class, 'generateReport'])->name('generate_report');
+Route::get('/generate-report', [ReportGenerationController::class, 'generateReport'])->name('generate_report');
+Route::post('/generate-report', [ReportGenerationController::class, 'generateReport'])->name('generate_report');
 
+Route::get('/client/appointments', [AppointmentController::class, 'getClientAppointments'])
+    ->name('client.appointments');

@@ -191,6 +191,15 @@
         transition: var(--tran-05);
     }
 
+    .user-container {
+        float: right;
+        font-size: 14px;
+        font-weight: 100;
+        color: var(--text-color);
+        margin-left: auto;
+        /* Move to the end of the container */
+    }
+
     .home .text {
         font-size: 26px;
         font-weight: 500;
@@ -208,10 +217,11 @@
         border-top: 3px solid navy;
         border-radius: 5;
     }
+
     /* style for services page */
-    
+
     /* title edit_status */
-     .table-bordered .title{
+    .table-bordered .title {
         color: white;
         background-color: rgba(41, 100, 182, 0.981);
     }
@@ -222,12 +232,12 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="images/cliniclogo.png" alt="">
+                    <img src="{{ asset('images/cliniclogo.png') }}" alt="">
                 </span>
 
                 <div class="text header-text">
                     <span class="name">Admin</span>
-                    <span class="profession">Web dev</span>
+                    <span class="profession">Administrator</span>
                 </div>
             </div>
             <i class="fa-solid fa-chevron-right toggle"></i>
@@ -286,22 +296,34 @@
                         <span class="text nav-text">Settings</span>
                     </a>
                 </li>
-
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="/login_page">
-                        <i class="fa-solid fa-right-from-bracket icon"></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
             </div>
         </div>
     </nav>
 
+
     <section class="home">
-        <div class="text">VetCare: Online Veterinary Appointment System</div>
+
+        <div class="text">VetCare: Online Veterinary Appointment System
+            <div class="dropdown float-end mx-auto">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-mdb-toggle="dropdown" aria-expanded="false">
+                    @auth
+                        {{ Auth::user()->firstname }}
+                    @endauth
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">My Account</a></li>
+                    <form id="logoutForm" method="post" action="{{ route('logout') }}">
+                        @csrf
+                        <li><a class="dropdown-item" href="#"
+                                onclick="document.getElementById('logoutForm').submit();">
+                                Logout<i class="fa-solid fa-right-from-bracket" style="float: right; margin-top: 5px;"></i>
+                            </a></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+
         @yield('content')
 
     </section>

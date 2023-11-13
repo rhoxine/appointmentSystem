@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 use App\Models\Users;
 
 class UserController extends Controller
 {
-    public function store(Request $request)
+    public function store_staff(Request $request)
     {
         // Validate the input data
         $request->validate([
@@ -17,6 +16,7 @@ class UserController extends Controller
             'lastname' => 'required',
             'username' => 'required',
             'password' => 'required',
+            'confirm_password' => 'required',
             'user_type' => 'required',
             'profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -34,6 +34,7 @@ class UserController extends Controller
             'lastname' => $request->input('lastname'),
             'username' => $request->input('username'),
             'password' => bcrypt($request->input('password')),
+            'confirm_password' => bcrypt($request->input('confirm_password')),
             'user_type' => $request->input('user_type'),
             'profile' => $profilePath,
         ]);
@@ -43,10 +44,12 @@ class UserController extends Controller
 
     public function get_users()
     {
-        $users = DB::select('SELECT * FROM users');
+        // Get all users excluding those with the user type 'admin'
+        $users = Users::where('user_type', '<>', 'admin')->get();
 
         return view('admin_side.users', compact('users'));
     }
+
 
     public function destroy($user_id)
     {
