@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md me-2 form-outline mb-4">
                                     <input type="text" name="owner_name" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Enter your name</label>
+                                    <label class="form-label" for="form3Example4">Name</label>
                                 </div>
 
                                 <input type="hidden" name="appointment_date" id="appointmentDate">
@@ -67,28 +67,28 @@
                             <div class="row">
                                 <div class="col-md me-2 form-outline mb-4">
                                     <input type="text" name="contact" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Enter Contact# </label>
+                                    <label class="form-label" for="form3Example4">Contact Number </label>
                                 </div>
                                 <div class="col-md form-outline mb-4">
                                     <input type="text" name="breed" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Enter breed</label>
+                                    <label class="form-label" for="form3Example4">Breed</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md me-2 form-outline mb-4">
                                     <input type="text" name="email_address" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Enter your email address</label>
+                                    <label class="form-label" for="form3Example4">Email address</label>
                                 </div>
 
                                 <div class="col-md form-outline mb-4">
                                     <input type="text" name="age" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Enter Pet Age</label>
+                                    <label class="form-label" for="form3Example4">Pet Age</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md form-outline mb-4">
                                     <input type="text" name="address" id="form3Example4" class="form-control" />
-                                    <label class="form-label" for="form3Example4">Enter address</label>
+                                    <label class="form-label" for="form3Example4">Address</label>
                                 </div>
 
                                 <div class="col-md">

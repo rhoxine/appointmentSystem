@@ -23,7 +23,10 @@ use App\Http\Controllers\ReportGenerationController;
 |
 */
 
-
+//login route
+Route::get('/', function() {
+    return view('client_side.login_page');
+});
 
 
 Route::get('/homepage', function () {

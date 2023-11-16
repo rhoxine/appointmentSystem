@@ -35,6 +35,7 @@
     .navbar-nav .nav-link:hover::before {
         width: 100%;
     }
+    
 </style>
 
 
