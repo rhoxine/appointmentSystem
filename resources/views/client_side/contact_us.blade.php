@@ -13,7 +13,8 @@
             </div>
             <div class="col">
                 <h2 class="fw-bold mb-5">Leave a message</h2>
-                <form>
+                <form action="{{ route('inquiry.store') }}" method="POST">
+                    @csrf
                     <!-- Name input -->
                     <div class="form-outline mb-4">
                         <input type="text" name="name" id="form4Example1" class="form-control" />
@@ -22,7 +23,7 @@
 
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" name="emailadd" id="form4Example2" class="form-control" />
+                        <input type="email" name="email" id="form4Example2" class="form-control" />
                         <label class="form-label" for="form4Example2">Email address</label>
                     </div>
                     <div class="form-outline mb-4">
@@ -31,7 +32,7 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                    <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">
                         SEND
                     </button>
                 </form>

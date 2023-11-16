@@ -225,6 +225,13 @@
         color: white;
         background-color: rgba(41, 100, 182, 0.981);
     }
+    .ellipsis {
+        max-width: 150px; /* Adjust the max-width as needed */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+    }
 </style>
 
 <body>
@@ -290,12 +297,12 @@
                         <span class="text nav-text">User List</span>
                     </a>
                 </li>
-                <li class="nav-link">
+                {{-- <li class="nav-link">
                     <a href="#">
                         <i class="fa-solid fa-gear icon"></i>
                         <span class="text nav-text">Settings</span>
                     </a>
-                </li>
+                </li> --}}
             </div>
         </div>
     </nav>

@@ -4,7 +4,7 @@
         <div class="img-container">
             <img src="images/vet clinic.png" class="w-75">
         </div>
-        <form method="POST">
+        <form method="POST" action="/login_page">
             @csrf
             <div class="form-outline mt-2">
                 <input type="text" name="username" id="form3Example3"

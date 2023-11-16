@@ -32,14 +32,21 @@
                                                 <label class="form-label" for="typeText">Service</label>
                                             </div>
                                             <div>
-                                                <select class="form-select mt-3" name="category_name"
+                                                {{-- <select class="form-select mt-3" name="category_name"
                                                     aria-label="Small select example">
                                                     <option selected>Select a Category</option>
                                                     @foreach ($categories as $category)
                                                         <option value="{{ $category->category_name }}">
                                                             {{ $category->category_name }}</option>
                                                     @endforeach
+                                                </select> --}}
+                                                <select class="form-select mt-3" name="category_id" aria-label="Small select example">
+                                                    <option selected>Select a Category</option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                                                    @endforeach
                                                 </select>
+                                                
                                             </div>
                                             <div class="form-outline mt-3">
                                                 <input type="number" name="service_fee" id="typeText"
@@ -77,7 +84,11 @@
                             <tr>
                                 <td>{{ $count }}</td>
                                 <td>{{ $service->service }}</td>
-                                <td>{{ $service->category_name }}</td>
+                                <td> @foreach ($categories as $category)
+                                    @if ($category->category_id === $service->category_id)
+                                        {{ $category->category_name }}
+                                    @endif
+                                @endforeach</td>
                                 <td>{{ $service->service_fee }}</td>
 
                                 <td>
@@ -137,47 +148,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-                        {{-- @foreach ($services as $service)
-                            <div class="modal fade" id="editServiceModal" tabindex="-1"
-                                aria-labelledby="editServiceModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editServiceModalLabel">Edit Service</h5>
-                                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <form action="{{ route('services.update', ['id' => $service->service_id]) }}"
-                                            method="POST">
-
-                                            @csrf
-                                            <div class="modal-body">
-                                                <input type="hidden" name="service_id" value="{{ $service->service_id }}">
-                                                <div class="form-outline">
-                                                    <input type="text" name="service" value="{{ $service->service }}"
-                                                        id="typeText" class="form-control" />
-                                                    <label class="form-label" for="typeText">Firstname</label>
-                                                </div>
-                                                <div class="form-outline mt-3">
-                                                    <input type="number" name="service_fee"
-                                                        value="{{ $service->service_fee }}" id="typeText"
-                                                        class="form-control" />
-                                                    <label class="form-label" for="typeText">Lastname</label>
-                                                </div>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-mdb-dismiss="modal">Cancel</button>
-                                                <button type="submit" name="submit"
-                                                    class="btn btn-primary">Save</button>
-                                            </div>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        @endforeach --}}
 
                     </tbody>
                 </table>

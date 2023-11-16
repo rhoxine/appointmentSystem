@@ -14,24 +14,24 @@ class ServicesController extends Controller
         return view('admin_side.services');
     }
 
+
     public function store(Request $request)
     {
-
         $request->validate([
             'service' => 'required',
-            'category_name' => 'required',
+            'category_id' => 'required',
             'service_fee' => 'required',
         ]);
 
+        $category = Category::where('category_id', $request->input('category_id'))->first();
+
         Services::create([
             'service' => $request->input('service'),
-            'category_name' => $request->input('category_name'),
+            'category_id' => $category->category_id,
             'service_fee' => $request->input('service_fee'),
         ]);
 
         return redirect('services')->with('success', 'Service added successfully');
-
-
     }
 
     public function get_services()

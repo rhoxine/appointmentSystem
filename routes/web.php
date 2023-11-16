@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ReportGenerationController;
 
 /*
@@ -51,13 +53,13 @@ Route::get('/about', function () {
     return view('client_side/about_us');
 });
 
-Route::get('/inventory', function () {
-    return view('admin_side/inventory');
-});
+// Route::get('/inventory', function () {
+//     return view('admin_side/inventory');
+// });
 
 
-Route::get('/inquiries', function () {
-    return view('admin_side/inquiries');
+Route::get('/view_message', function () {
+    return view('admin_side/view_message');
 });
 
 
@@ -114,6 +116,34 @@ Route::get('/category/{category_id}/delete', [CategoryController::class, 'destro
 
 Route::get('/category/{category_id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/category/update{id}', [CategoryController::class, 'update'])->name('category.update');
+
+
+
+Route::post('/addproduct', [InventoryController::class, 'store'])->name('product.store');
+Route::get('/inventory', [InventoryController::class, 'get_products']);
+Route::get('/inventory/{product_id}/delete', [InventoryController::class, 'destroy'])->name('product.delete');
+
+Route::get('/inventory/{product_id}/edit', [InventoryController::class, 'edit'])->name('product.edit');
+Route::post('/inventory/update/{id}', [InventoryController::class, 'update'])->name('product.update');
+
+
+// Route::post('/updateQuantity', [InventoryController::class, 'updateQuantity'])->name('updateQuantity');
+
+
+
+
+Route::post('/addinquiry', [InquiryController::class, 'store'])->name('inquiry.store');
+Route::get('/inquiries', [InquiryController::class, 'get_inquiries']);
+
+Route::get('/inquiry/{inquiry_id}/delete', [InquiryController::class, 'destroy'])->name('inquiry.delete');
+
+
+Route::get('/inquiry/{inquiry_id}/edit', [InquiryController::class, 'edit'])->name('inquiry.edit');
+Route::post('/inquiry/update{id}', [InquiryController::class, 'update'])->name('inquiry.update');
+
+Route::get('/inquiry/{inquiry_id}', [InquiryController::class, 'viewMessage'])->name('admin_side/view_message');
+// Route::post('/update-status/{inquiry_id}', [InquiryController::class, 'updateStatus'])->name('update_status');
+
 
 
 Route::get('/appointment', [AppointmentController::class, 'showAppointmentForm']);

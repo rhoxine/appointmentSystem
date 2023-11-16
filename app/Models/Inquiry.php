@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Services extends Model
+class Inquiry extends Model
 {
-  protected $primaryKey = 'service_id';
-
+    protected $primaryKey = 'inquiry_id';
     protected $fillable = [
-      'service_id',
-      'category_id',
-      'service',
-      'service_fee',
-      
-
-    ];
+        'inquiry_id',
+        'name',
+        'message',
+      ];
     use HasFactory;
 }

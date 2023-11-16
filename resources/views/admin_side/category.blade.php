@@ -77,7 +77,7 @@
                                     </a>
 
                                 </td>
-                                </td>
+                              
                             </tr>
                             <?php $count++; ?>
                         @endforeach

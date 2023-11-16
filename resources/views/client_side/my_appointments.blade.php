@@ -8,6 +8,13 @@
 
                 <h2>My Appointments</h2>
 
+                @if ($userAppointments->isEmpty())
+                <div class="text-center">
+                    <img src="{{asset('images/no_data.png')}}" alt="">
+                    <p class="mt-3">No Appointments Yet.</p>
+                </div>
+
+                @else
                 @foreach ($userAppointments as $appointment)
                     <div class="appointment-border w-25">
                         <div class="appointment-content">
@@ -20,6 +27,7 @@
                         </div>
                     </div>
                 @endforeach
+                @endif
             </div>
         </center>
         @php
