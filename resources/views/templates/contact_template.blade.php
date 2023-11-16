@@ -35,7 +35,6 @@
     }
 
     .row{
-        border: 1px solid yellow;
         width: 60%;
         background: #fff;
         border-radius: 20px;
