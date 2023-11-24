@@ -21,7 +21,8 @@ class Appointment extends Model
         'age',
         'address',
         'service',
-        'status'
+        'status',
+        'comment',
     ];
     use HasFactory;
 }

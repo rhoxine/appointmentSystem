@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('service');
             $table->integer('status')->default(0);
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

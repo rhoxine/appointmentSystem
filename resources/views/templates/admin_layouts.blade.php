@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
 
+
     <title>Admin</title>
 </head>
 <style>
@@ -87,7 +88,7 @@
 
     .custom-sidebar li .icon {
         min-width: 50px;
-        font-size: 20px;
+        font-size: 25px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -148,6 +149,8 @@
         font-size: 16px;
         transition: var(--tran-03);
     }
+
+
 
     .custom-sidebar.close header .toggle {
         transform: translateY(-50%);
@@ -214,6 +217,8 @@
     }
 
     .card-outline {
+        /* margin-left: -10px; */
+        width: 105%;
         border-top: 3px solid navy;
         border-radius: 5;
     }
@@ -225,12 +230,22 @@
         color: white;
         background-color: rgba(41, 100, 182, 0.981);
     }
+
     .ellipsis {
-        max-width: 150px; /* Adjust the max-width as needed */
+        max-width: 150px;
+        /* Adjust the max-width as needed */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        
+
+
+    }
+
+    .custom-sidebar li.dropdown .fa-chevron-down {
+        margin-left: 5px;
+        /* Move the chevron to the right */
+        color: black;
+        /* Change the color to black */
     }
 </style>
 
@@ -254,25 +269,25 @@
             <div class="menu">
 
                 <li class="nav-link">
-                    <a href="/list_appointments">
+                    <a href="{{ route('admin.list_appointments') }}">
                         <i class="fa fa-calendar-day icon"></i>
                         <span class="text nav-text">Appointment Requests</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="/inquiries">
+                    <a href="{{ route('admin.inquiries') }}">
                         <i class="fa fa-circle-question icon"></i>
                         <span class="text nav-text">Inquiries</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="/inventory">
+                    <a href="{{ route('admin.inventory') }}">
                         <i class="fa fa-boxes-stacked icon"></i>
                         <span class="text nav-text">Inventory</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="/generate-report">
+                    <a href="{{ route('admin.generate_report') }}">
                         <i class="fa fa-file-invoice icon"></i>
                         <span class="text nav-text">Report Generation</span>
                     </a>
@@ -280,29 +295,48 @@
                 <hr>
                 <h4 class="text">Maintenance</h4>
                 <li class="nav-link">
-                    <a href="/category">
+                    <a href="{{ route('admin.category') }}">
                         <i class="fa fa-table icon"></i>
                         <span class="text nav-text">Category</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="/services">
+                    <a href="{{ route('admin.services') }}">
                         <i class="fa-solid fa-table-list icon"></i>
                         <span class="text nav-text">Services List</span>
                     </a>
                 </li>
                 <li class="nav-link">
-                    <a href="/users">
+                    <a href="{{ route('admin.users') }}">
                         <i class="fa fa-users-gear icon"></i>
                         <span class="text nav-text">User List</span>
+
                     </a>
                 </li>
-                {{-- <li class="nav-link">
-                    <a href="#">
-                        <i class="fa-solid fa-gear icon"></i>
-                        <span class="text nav-text">Settings</span>
+                <li class="nav-link">
+                    <a href="{{ route('admin.cases') }}">
+                        <i class="fa fa-users-gear icon"></i>
+                        <span class="text nav-text">Special Cases</span>
+
                     </a>
-                </li> --}}
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown" href="#" id="dropdownMenuLink" data-mdb-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-gear icon"></i>
+                        <span class="text nav-text">Settings<i class="fa-solid fa-chevron-down"></i></span>
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item"
+                                href="{{ route('admin_side.content_management.services_list') }}">Services
+                                Management</a></li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('admin_side.content_management.footer_list') }}">Footer Management</a>
+                        </li>
+                    </ul>
+                </li>
             </div>
         </div>
     </nav>
@@ -310,7 +344,9 @@
 
     <section class="home">
 
-        <div class="text">VetCare: Online Veterinary Appointment System
+        <div class="text ">
+            VetCare: Online Veterinary Appointment System
+
             <div class="dropdown float-end mx-auto">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-mdb-toggle="dropdown" aria-expanded="false">
@@ -324,26 +360,54 @@
                         @csrf
                         <li><a class="dropdown-item" href="#"
                                 onclick="document.getElementById('logoutForm').submit();">
-                                Logout<i class="fa-solid fa-right-from-bracket" style="float: right; margin-top: 5px;"></i>
+                                Logout<i class="fa-solid fa-right-from-bracket"
+                                    style="float: right; margin-top: 5px;"></i>
                             </a></li>
                     </form>
                 </ul>
             </div>
+
+            <div class="dropdown float-end mx-auto">
+                <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                    role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#">Some news</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        @yield('content')
 
+        @yield('content')
     </section>
 
+
     <script>
-        const
-            body = document.querySelector("body"),
-            sidebar = body.querySelector(".custom-sidebar"),
-            toggle = body.querySelector(".toggle");
+        const body = document.querySelector("body");
+        const sidebar = body.querySelector(".custom-sidebar");
+        const toggle = body.querySelector(".toggle");
+
+        function closeSidebarIfNecessary() {
+            if (window.innerWidth <= 768) { // Adjust the threshold as needed
+                sidebar.classList.add("close");
+            } else {
+                sidebar.classList.remove("close");
+            }
+        }
 
         toggle.addEventListener("click", () => {
             sidebar.classList.toggle("close");
         });
+
+        // Add event listener for window resize
+        window.addEventListener("resize", closeSidebarIfNecessary);
+
+        // Call the function initially to set the initial state
+        closeSidebarIfNecessary();
     </script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>

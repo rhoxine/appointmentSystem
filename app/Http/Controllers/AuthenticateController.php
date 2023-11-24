@@ -65,7 +65,7 @@ class AuthenticateController extends Controller
                 return redirect('/admin');
             } elseif ($user->user_type == 'user') {
                 // Redirect to the user's home page
-                return redirect('/home');
+                return redirect('/homepage');
             }
         }
 

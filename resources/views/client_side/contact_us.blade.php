@@ -13,7 +13,7 @@
             </div>
             <div class="col">
                 <h2 class="fw-bold mb-5">Leave a message</h2>
-                <form action="{{ route('inquiry.store') }}" method="POST">
+                <form action="{{ route('inquiry.store') }}" method="POST"  id="contactForm">
                     @csrf
                     <!-- Name input -->
                     <div class="form-outline mb-4">
@@ -39,4 +39,5 @@
             </div>
         </div>
     </div>
+    
 @endsection

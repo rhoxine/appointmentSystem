@@ -21,7 +21,7 @@
         opacity: 0.8;
     }
     .container{
-        width: 500px;
+        width: 600px;
         height: auto;
         padding: 20px;
         background: #fff;

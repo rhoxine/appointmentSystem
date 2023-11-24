@@ -31,7 +31,8 @@ class ServicesController extends Controller
             'service_fee' => $request->input('service_fee'),
         ]);
 
-        return redirect('services')->with('success', 'Service added successfully');
+        // return redirect('services')->with('success', 'Service added successfully');
+        return redirect()->back()->with('success', 'Service added successfully');
     }
 
     public function get_services()
@@ -74,9 +75,9 @@ class ServicesController extends Controller
 
             $service->save();
 
-            return redirect('/services')->with('success', 'Service updated successfully');
+            return redirect('/admin/services')->with('success', 'Service updated successfully');
         } else {
-            return redirect('/services')->with('error', 'Service not found');
+            return redirect('/admin/services')->with('error', 'Service not found');
         }
     }
 

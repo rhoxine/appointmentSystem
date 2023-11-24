@@ -1,5 +1,5 @@
 @include('templates.data_table_template')
-@extends('templates.admin_sidenav')
+@extends('templates.admin_layouts')
 @section('content')
     <div class="container mt-2">
         <div class="card card-outline">

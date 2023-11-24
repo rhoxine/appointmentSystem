@@ -24,6 +24,7 @@ class AppointmentController extends Controller
             'address' => 'required|string',
             'service' => 'required',
             'status' => 'nullable',
+          
         ]);
 
         $appointment = new Appointment();
@@ -38,6 +39,7 @@ class AppointmentController extends Controller
         $appointment->address = $request->input('address');
         $appointment->service = $request->input('service');
         $appointment->status = $request->input('status', 0);
+      
 
         $appointment->save();
 
@@ -74,11 +76,13 @@ class AppointmentController extends Controller
     {
         $request->validate([
             'status' => 'required|in:0,1,2',
+            'comment' => 'nullable|string', // Add this line
         ]);
 
         // Update the status of the appointment
         $appointment = Appointment::where('client_id', $client_id)->first();
         $appointment->status = $request->input('status');
+        $appointment->comment = $request->input('comment'); // Add this line
         $appointment->save();
 
         return redirect()->back()->with('success', 'Status updated successfully');
@@ -98,5 +102,26 @@ class AppointmentController extends Controller
         return view('client_side.my_appointments', ['userAppointments' => $userAppointments]);
     }
 
+
+    public function destroy($client_id)
+    {
+        $appointment = Appointment::find($client_id);
+
+        // Check if the category exists
+        if ($appointment) {
+            // Delete the category
+            $appointment->delete();
+            return redirect()->back()->with('success', 'Appoitment deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'Appoitment not found');
+        }
+    }
+
+
+
+    public function get_cases()
+    {
+        return view('admin_side.cases');
+    }
 
 }

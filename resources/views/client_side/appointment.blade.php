@@ -113,34 +113,30 @@
         </div>
     </div>
 
+
     <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
-
                 header: {
                     right: 'prev,next today',
                     center: 'title',
                     left: ''
                 },
                 defaultView: 'month',
-
                 dayRender: function(date, cell) {
-
                     var currentDate = moment();
 
-                    if (date.isBefore(currentDate, 'day')) {
+                    if (date.isBefore(currentDate, 'day') || date.isSame(currentDate, 'day')) {
                         var button = $('<button/>', {
                             class: 'date-button disabled',
                             disabled: true,
                         }).text('BOOK');
 
                         cell.append(button);
-
                     } else {
                         var button = $('<button/>', {
                             class: 'date-button',
-                            'data-date': date.format(
-                                'YYYY-MM-DD'),
+                            'data-date': date.format('YYYY-MM-DD'),
                         }).text('BOOK');
 
                         button.css({
@@ -149,19 +145,23 @@
                         });
 
                         cell.append(button);
-
+                        
                         button.click(function() {
-
-                            var clickedDate = $(this).data('date');
-
-                            $('#selectedDate').text(clickedDate);
-                            $('#appointmentDate').val(clickedDate);
-                            $('#bookAppointmentModal').modal('show');
-
+                            // Check if the user is authenticated
+                            @auth
+                                var clickedDate = $(this).data('date');
+                                $('#selectedDate').text(clickedDate);
+                                $('#appointmentDate').val(clickedDate);
+                                $('#bookAppointmentModal').modal('show');
+                            @else
+                                // Redirect to the register page if the user is not authenticated
+                                window.location.href = '/register';
+                            @endauth
                         });
                     }
                 },
             });
         });
     </script>
+
 @endsection

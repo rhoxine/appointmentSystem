@@ -69,9 +69,9 @@ class CategoryController extends Controller
 
             $categories->save();
 
-            return redirect('/category')->with('success', 'Category updated successfully');
+            return redirect('/admin/category')->with('success', 'Category updated successfully');
         } else {
-            return redirect('/category')->with('error', 'Category not found');
+            return redirect('/admin/category')->with('error', 'Category not found');
         }
     }
 

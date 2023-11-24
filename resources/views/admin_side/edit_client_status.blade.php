@@ -1,4 +1,4 @@
-@extends('templates.admin_sidenav')
+@extends('templates.admin_layouts')
 @section('content')
     <div class="container mt-2">
         <div class="card card-outline">
@@ -99,8 +99,14 @@
                                                 <option value="2" {{ $appointment->status == 2 ? 'selected' : '' }}>Cancelled</option>
                                             </select>
                                         </div>
+                                        <div class="form-outline mt-3">
+                                            <textarea class="form-control" name="comment" id="textAreaExample" rows="4"></textarea>
+                                            <label class="form-label" for="textAreaExample">Comment</label>
+                                          </div>
                                     </div>
                                 
+                                    
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>

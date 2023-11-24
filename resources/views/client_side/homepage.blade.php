@@ -4,49 +4,53 @@
 
 
 
-    <div class="image-container">
-        <div class="tagline">
-            <p class="tag1">Kingdom Animalia,</p>
-            <em>
-                <p class="tag2">The Kingdom they deserve.</p>
-            </em>
+    <div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2"
+                aria-label="Slide 3"></button>
         </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/background.jpg" class="d-block w-100" alt="Wild Landscape" />
+            </div>
+            <div class="carousel-item">
+                <img src="images/background.jpg" class="d-block w-100" alt="Camera" />
+            </div>
+            <div class="carousel-item">
+                <img src="images/background.jpg" class="d-block w-100" alt="Exotic Fruits" />
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators"
+            data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators"
+            data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+
+
     <div class="service-container">
         <h1 class="heading">Our Services</h1>
         <div class="services">
-            <div class="card">
-                <img src="images/treatment.jpg" alt="" class="image">
-                <h5>Treatment</h5>
-            </div>
-            <div class="card">
-                <img src="images/diagnostics.jpg" alt="" class="image">
-                <h5>Diagnostics</h5>
-            </div>
-            <div class="card">
-                <img src="images/confinement.jpg" alt="" class="image">
-                <h5>Confinement</h5>
-            </div>
-            <div class="card">
-                <img src="images/grooming.jpg" alt="" class="image">
-                <h5>Grooming</h5>
-            </div>
-            <div class="card">
-                <img src="images/vaccination.jpg" alt="" class="image">
-                <h5>Vaccination</h5>
-            </div>
-            <div class="card">
-                <img src="images/deworming.jpg" alt="" class="image">
-                <h5>Deworming</h5>
-            </div>
-            <div class="card">
-                <img src="images/home-service.jpg" alt="" class="image">
-                <h5>Home Services</h5>
-            </div>
-            <div class="card">
-                <img src="images/surgical procedures.jpg" alt="" class="image">
-                <h5>Surgical Procedures</h5>
-            </div>
+            @foreach ($services_list as $service)
+                <div class="card">
+                    <img src="{{ asset('storage/' . $service->service_img) }}" alt="Service Image" class="image">
+                    <h5>{{ $service->service_name }}</h5>
+                </div>
+            @endforeach
+
+            @if ($services_list->isEmpty())
+                <p>No services found</p>
+            @endif
+
         </div>
     </div>
 
@@ -54,48 +58,41 @@
 
         <div class="container p-4">
 
-            <div class="row">
+            @foreach ($footers as $footer)
+                <div class="row">
 
-                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                    <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
 
-                    <h5 class="text-uppercase">Contact</h5>
-                    <p>
-                        <i class="fa fa-phone"></i>
-                        0927 077 5130
-                    </p>
-                    <p>
-                        <i class="fa fa-envelope"></i>
-                        kingdomanimalia@gmail.com
-                    </p>
+                        <h5 class="text-uppercase">Contact</h5>
+
+                        <p>
+                            <i class="fa fa-phone"></i>
+                            {{ $footer->contact_number }}
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope"></i>
+                            {{ $footer->email_address }}
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Location</h5>
+                        <p>
+                            <i class="fa fa-location-dot"></i>
+                            {{ $footer->location }}
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Working Hours</h5>
+
+                        <p class="bhours">
+                            <i class="fa fa-clock me-2"></i>
+                            {{ $footer->work_hours }}
+                        </p>
+                    </div>
                 </div>
-
-                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Location</h5>
-                    <p>
-                        <i class="fa fa-location-dot"></i>
-                        St. Francis Bldg, Mcarthur Highway,
-                        Brgy. San Vicente
-                        Urdaneta City
-                        2428 Pangasinan
-                        Philippines
-                    </p>
-                </div>
-
-                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Working Hours</h5>
-
-                    <p class="bhours">
-                        <i class="fa fa-clock me-2"></i>
-                        Monday - Saturday: 9:00 AM – 6:00 PM
-                    </p>
-                    <p class="bhours mt-2">
-                        <i class="fa fa-clock me-2"></i>
-                        Sunday: 9:00 AM – 4:00 PM
-                    </p>
-
-
-                </div>
-            </div>
+            @endforeach
 
 
         </div>
@@ -103,7 +100,7 @@
     </footer>
 
     <div class="text-center p-3" style="background-color: #779ad1;">
-        Copyright © 2023. All Rights Reserved.
+        {{ $footer->copyright }}
         <a class="text-dark">TechHive Inc.</a>
     </div>
     </footer>

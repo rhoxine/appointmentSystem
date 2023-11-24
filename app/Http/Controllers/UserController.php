@@ -23,7 +23,7 @@ class UserController extends Controller
 
 
         if ($request->hasFile('profile')) {
-            $profilePath = $request->file('profile')->store('profiles', 'public');
+            $profilePath = $request->file('profile')->store('images_uploads', 'public');
         } else {
             $profilePath = null;
         }
@@ -39,7 +39,7 @@ class UserController extends Controller
             'profile' => $profilePath,
         ]);
 
-        return redirect('users')->with('success', 'User created successfully');
+        return redirect('/admin/users')->with('success', 'User created successfully');
     }
 
     public function get_users()
@@ -84,9 +84,9 @@ class UserController extends Controller
 
             $user->save();
 
-            return redirect('/users')->with('success', 'User updated successfully');
+            return redirect('/admin/users')->with('success', 'User updated successfully');
         } else {
-            return redirect('/users')->with('error', 'User not found');
+            return redirect('/admin/users')->with('error', 'User not found');
         }
     }
 }
