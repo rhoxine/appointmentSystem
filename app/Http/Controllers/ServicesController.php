@@ -31,7 +31,6 @@ class ServicesController extends Controller
             'service_fee' => $request->input('service_fee'),
         ]);
 
-        // return redirect('services')->with('success', 'Service added successfully');
         return redirect()->back()->with('success', 'Service added successfully');
     }
 

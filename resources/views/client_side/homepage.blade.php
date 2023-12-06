@@ -18,10 +18,10 @@
                 <img src="images/background.jpg" class="d-block w-100" alt="Wild Landscape" />
             </div>
             <div class="carousel-item">
-                <img src="images/background.jpg" class="d-block w-100" alt="Camera" />
+                <img src="images/banner2.jpg" class="d-block w-100" alt="Camera" />
             </div>
             <div class="carousel-item">
-                <img src="images/background.jpg" class="d-block w-100" alt="Exotic Fruits" />
+                <img src="images/banner3.jpg" class="d-block w-100" alt="Exotic Fruits" />
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators"

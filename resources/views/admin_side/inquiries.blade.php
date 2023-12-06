@@ -25,7 +25,7 @@
                                 <th>Inquirer</th>
                                 <th>Email</th>
                                 <th>Message</th>
-                                <th>Status</th>
+                                <th>Reply</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -39,10 +39,7 @@
                                     <td>{{ $inquiry->email }}</td>
                                     <td class="ellipsis">{{ $inquiry->message }}</td>
                                     <td>
-                                        <a class="badge rounded-pill badge-success" data-bs-toggle="modal" data-mdb-target=""
-                                            href="">
-                                            Read
-                                        </a>
+                                        {{ $inquiry->reply }}
                                     </td>
     
                                     <td>
@@ -62,9 +59,6 @@
                                 </tr>
                                 <?php $count++; ?>
                             @endforeach
-    
-    
-    
     
     
                             <div class="modal fade" id="editInquiryModal" tabindex="-1" aria-labelledby="editInquiryModalLabel"

@@ -20,7 +20,6 @@
                     </button>
                 @endisset
 
-                <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -30,22 +29,24 @@
                                 <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <div class="form-outline">
-                                    <input type="text" name="reply_message" value="" id="typeText"
-                                        class="form-control" maxlength="255" />
-                                    <!-- Adjust the 'maxlength' value as needed -->
-                                    <label class="form-label" for="typeText">Message</label>
+                            <form action="{{ route('send_reply', ['inquiry_id' => $inquiry->inquiry_id]) }}" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="form-outline">
+                                        <input type="text" name="reply" id="typeText" class="form-control" />
+                                        <label class="form-label" for="typeText">Message</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

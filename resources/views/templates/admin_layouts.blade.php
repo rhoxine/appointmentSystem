@@ -41,7 +41,7 @@
     }
 
     .custom-sidebar .text {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 500;
         color: var(--text-color);
         transition: var(--tran-04);
@@ -63,7 +63,7 @@
         top: 0;
         left: 0;
         height: 100%;
-        width: 250px;
+        width: 300px;
         background: var(--sidebar-color);
         padding: 10px 14px;
         transition: var(--tran-05);
@@ -183,49 +183,48 @@
         justify-content: space-between;
     }
 
-
-
-    .home {
-        position: relative;
-        height: 100vh;
-        left: 250px;
-        width: calc(100% - 250px);
-        background: var(--body-color);
-        transition: var(--tran-05);
-    }
-
     .user-container {
         float: right;
         font-size: 14px;
         font-weight: 100;
         color: var(--text-color);
         margin-left: auto;
-        /* Move to the end of the container */
     }
 
-    .home .text {
-        font-size: 26px;
-        font-weight: 500;
-        color: var(--text-color);
-        padding: 8px 40px;
-        background-color: #ffffff;
+
+    @media (max-width: 768px) {
+        h3 {
+            margin-left: 80px;
+            transition: margin-left var(--tran-05);
+        }
+
+        .card-header {
+            padding-left: 80px;
+            /* Adjust the padding as needed */
+            transition: padding-left var(--tran-05);
+        }
+
+        .custom-sidebar.close h3,
+        .custom-sidebar.close .card-header {
+            margin-left: 0;
+            padding-left: 0;
+        }
     }
 
-    .custom-sidebar.close~.home {
-        left: 81px;
-        width: calc(100% - 81px);
+    .card-header {
+        background: white;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
     }
 
     .card-outline {
-        /* margin-left: -10px; */
-        width: 105%;
+        margin-left: 25px;
+        margin-top: 20px;
+        width: 115%;
         border-top: 3px solid navy;
-        border-radius: 5;
+        border-radius: 10px;
     }
 
-    /* style for services page */
-
-    /* title edit_status */
     .table-bordered .title {
         color: white;
         background-color: rgba(41, 100, 182, 0.981);
@@ -233,7 +232,6 @@
 
     .ellipsis {
         max-width: 150px;
-        /* Adjust the max-width as needed */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -242,10 +240,8 @@
     }
 
     .custom-sidebar li.dropdown .fa-chevron-down {
-        margin-left: 5px;
-        /* Move the chevron to the right */
+        margin-left: 15px;
         color: black;
-        /* Change the color to black */
     }
 </style>
 
@@ -302,20 +298,20 @@
                 </li>
                 <li class="nav-link">
                     <a href="{{ route('admin.services') }}">
-                        <i class="fa-solid fa-table-list icon"></i>
+                        <i class="fa-solid fa-list icon"></i>
                         <span class="text nav-text">Services List</span>
                     </a>
                 </li>
                 <li class="nav-link">
                     <a href="{{ route('admin.users') }}">
-                        <i class="fa fa-users-gear icon"></i>
+                        <i class="fa fa-users icon"></i>
                         <span class="text nav-text">User List</span>
 
                     </a>
                 </li>
                 <li class="nav-link">
                     <a href="{{ route('admin.cases') }}">
-                        <i class="fa fa-users-gear icon"></i>
+                        <i class="fa fa-calendar-plus icon"></i>
                         <span class="text nav-text">Special Cases</span>
 
                     </a>
@@ -343,44 +339,41 @@
 
 
     <section class="home">
+        <div class="card-header">
+            <h3>VetCare: Online Veterinary Appointment System
+                <div class="dropdown float-end ">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-mdb-toggle="dropdown" aria-expanded="false">
+                        @auth
+                            {{ Auth::user()->firstname }}
+                        @endauth
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {{-- <li><a class="dropdown-item" href="#">My Account</a></li> --}}
+                        <form id="logoutForm" method="post" action="{{ route('logout') }}">
+                            @csrf
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="document.getElementById('logoutForm').submit();">
+                                    Logout<i class="fa-solid fa-right-from-bracket" style="float: right;"></i>
+                                </a></li>
+                        </form>
+                    </ul>
+                </div>
+                <div class="dropdown float-end mx-auto">
+                    {{-- <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a> --}}
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                    </ul>
+                </div>
+            </h3>
 
-        <div class="text ">
-            VetCare: Online Veterinary Appointment System
-
-            <div class="dropdown float-end mx-auto">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-mdb-toggle="dropdown" aria-expanded="false">
-                    @auth
-                        {{ Auth::user()->firstname }}
-                    @endauth
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#">My Account</a></li>
-                    <form id="logoutForm" method="post" action="{{ route('logout') }}">
-                        @csrf
-                        <li><a class="dropdown-item" href="#"
-                                onclick="document.getElementById('logoutForm').submit();">
-                                Logout<i class="fa-solid fa-right-from-bracket"
-                                    style="float: right; margin-top: 5px;"></i>
-                            </a></li>
-                    </form>
-                </ul>
-            </div>
-
-            <div class="dropdown float-end mx-auto">
-                <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
-                    role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="#">Some news</a>
-                    </li>
-                </ul>
-            </div>
         </div>
-
 
         @yield('content')
     </section>
@@ -390,23 +383,29 @@
         const body = document.querySelector("body");
         const sidebar = body.querySelector(".custom-sidebar");
         const toggle = body.querySelector(".toggle");
+        const cardHeader = document.querySelector(".card-header h3");
 
         function closeSidebarIfNecessary() {
-            if (window.innerWidth <= 768) { // Adjust the threshold as needed
+            if (window.innerWidth <= 768) {
                 sidebar.classList.add("close");
+                cardHeader.style.marginLeft = "80px";
             } else {
                 sidebar.classList.remove("close");
+                cardHeader.style.marginLeft = "300px";
             }
         }
 
+
         toggle.addEventListener("click", () => {
             sidebar.classList.toggle("close");
+            if (sidebar.classList.contains("close")) {
+                cardHeader.style.marginLeft = "80px";
+            } else {
+                cardHeader.style.marginLeft = "300px";
+            }
         });
-
-        // Add event listener for window resize
         window.addEventListener("resize", closeSidebarIfNecessary);
 
-        // Call the function initially to set the initial state
         closeSidebarIfNecessary();
     </script>
 

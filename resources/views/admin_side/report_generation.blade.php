@@ -1,4 +1,4 @@
-@extends('templates.data_table_template')
+{{-- @extends('templates.data_table_template') --}}
 @extends('templates.admin_layouts')
 @section('content')
     <div class="container mt-2">
@@ -31,8 +31,8 @@
                 </form>
 
                 <hr>
-                <div class="table-responsive">
-                    <table class="table align-middle mb-0 bg-white">
+                <div class="table-responsive ">
+                    <table class="table align-middle mb-0 bg-white" id="reportTable">
                         <thead class="bg-light">
                             <tr>
                                 <th>Appointment Date</th>
@@ -59,4 +59,53 @@
             </div>
         </div>
     </div>
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Include DataTables and Buttons scripts -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.colVis.min.js"></script>
+<!-- Include pdfmake library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
+
+<!-- Include Bootstrap scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<style>
+    #reportTable_wrapper.text-center .dataTables_empty {
+    text-align: center !important;
+}
+</style>
+<!-- Your custom script -->
+<script>
+    $(document).ready(function() {
+    $('#reportTable').DataTable({
+        searching: false, 
+        lengthChange: false, 
+        info: false, 
+        paging: false, 
+        dom: '<"d-flex justify-content-end"B>', 
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                title: 'Inventory Report',
+                customize: function(doc) {
+                },
+                className: 'btn btn-primary', 
+                text: '<i class="fa fa-file-pdf"></i> Generate PDF' 
+            }
+        ]
+    });
+    var dataTableContainer = $('#reportTable_wrapper');
+    dataTableContainer.addClass('text-center');
+});
+</script>
+
 @endsection

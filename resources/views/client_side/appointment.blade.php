@@ -163,5 +163,5 @@
             });
         });
     </script>
-
+@include('templates.sweetalert')
 @endsection

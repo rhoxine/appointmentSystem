@@ -40,7 +40,6 @@
                                             <div class="form-outline mt-3">
                                                 <input type="file" name="service_img" id="typeText"
                                                     class="form-control" />
-                                                {{-- <label class="form-label" for="typeText">Service Image</label> --}}
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -111,7 +110,6 @@
                                             <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        {{-- <form action="{{ route('service_info.update', ['id' => $service->services_id]) }}" method="POST"> --}}
                                         <form action="{{ route('service_info.update', ['id' => $service->services_id]) }}"
                                             method="POST" enctype="multipart/form-data">
 
@@ -134,14 +132,12 @@
                                                
                                                 <div class="form-outline mt-3">
                                                     <input type="file" name="service_img" id="typeText" class="form-control" />
-                                                    {{-- <label class="form-label" for="typeText">Service Image</label> --}}
                                                 </div><br>
                                                 <center>
                                                 @if ($service->service_img)
                                                 <div class="image-container">
                                                     <img src="{{ asset('storage/' . $service->service_img) }}" alt="Current Image" width="150" height="100">
                                                 </div>
-                                                {{-- <p class="mt-2">Current Image: {{ $service->service_img }}</p> --}}
                                             @endif
                                         </center>
                                                

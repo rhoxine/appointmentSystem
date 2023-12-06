@@ -52,7 +52,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $appointment->comment }}</td>
-                                    <td>
+                                    <td nowrap>
                                         <a class="btn btn-primary "
                                             href="{{ route('admin_side/edit_client_status', ['client_id' => $appointment->client_id]) }}">
                                             <i class="fa fa-eye"></i>

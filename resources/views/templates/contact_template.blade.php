@@ -8,13 +8,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Contact</title>
 </head>
 <style>
     body {
         padding: 0;
         margin: 0;
-        /* overflow: hidden; */
     }
 
     .container-contact {
@@ -75,30 +75,25 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         $(document).ready(function() {
-            // Form submission handling
             $('#contactForm').submit(function(event) {
-                    event.preventDefault(); // Prevent the default form submission
+                    event.preventDefault(); 
 
-                    // Check if the user is authenticated
                     @auth
-                    // If the user is authenticated, proceed with form submission using AJAX
                     $.ajax({
                         type: 'POST',
                         url: $(this).attr('action'),
                         data: $(this).serialize(),
                         success: function(response) {
-                            // Handle the success response if needed
+                         
                             console.log(response);
-                            // Optionally, you can reset the form after successful submission
+                           
                             $('#contactForm')[0].reset();
                         },
                         error: function(error) {
-                            // Handle the error response if needed
                             console.log(error);
                         }
                     });
                 @else
-                    // If the user is not authenticated, show a SweetAlert warning
                     Swal.fire({
                         icon: 'warning',
                         text: 'Please log in to send a message.',

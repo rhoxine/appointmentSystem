@@ -24,4 +24,9 @@ class Users extends Model implements Authenticatable
         'profile'
     ];
     use HasFactory;
+
+    public function replyMessages()
+    {
+        return $this->hasMany(Inquiry::class, 'user_id');
+    }
 }

@@ -16,28 +16,7 @@
         box-sizing: border-box;
         outline: none; border: none;
     }
-    .image-container {
-        background-image:linear-gradient(to right, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0)), url("images/background.jpg");
-        background-repeat: no-repeat;
-        height: auto;
-        width: 100%;
-        background-size: cover;
-    }
-
-    .tagline{
-        vertical-align: middle;
-        text-align: left;
-        padding: 17% 0 10% 7%;
-        color: #fff;
-        font-family:Georgia, 'Times New Roman', Times, serif;
-    }
-    .tag1{
-        font-size: 4vw;
-        font-weight: bold;
-    }
-    .tag2{
-        font-size: 3vw;
-    }
+   
 
     .bhours {
         margin-bottom: -7px;
@@ -68,6 +47,7 @@
     .card:hover{
         transform: scale(1.03);
     }
+
 
     .card img{
         height: 200px;
@@ -125,7 +105,6 @@
 
     @yield('content')
 
-    <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 </body>
 

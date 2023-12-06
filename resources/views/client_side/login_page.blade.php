@@ -1,10 +1,10 @@
 @extends('templates.login_template')
 @section('content')
-@if(session('success'))
+{{-- @if(session('success'))
         <div class="alert alert-success alert-dismissable fade show" role="alert" id="alert">
             <strong>{{ session("success") }}</strong>
           </div>
-        @endif
+        @endif --}}
         <div class="container">
             <div class="img-container">
                 <img src="images/vet clinic.png" class="w-75">

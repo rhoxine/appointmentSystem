@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SpecialCases;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\AuthenticateController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\ContentManagementController;
 use App\Http\Controllers\ReportGenerationController;
+use App\Http\Controllers\SpecialCasesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +45,7 @@ Route::get('/view_message', function () {
     return view('admin_side/view_message');
 });
 
-Route::get('/admin/cases', [AppointmentController::class, 'get_cases'])->name('admin.cases');
+// Route::get('/admin/cases', [AppointmentController::class, 'get_cases'])->name('admin.cases');
 
 Route::get('/my_appointments', function () {
     return view('client_side/my_appointments');
@@ -123,6 +125,7 @@ Route::post('/inquiry/update{id}', [InquiryController::class, 'update'])->name('
 
 Route::get('/inquiry/{inquiry_id}', [InquiryController::class, 'viewMessage'])->name('admin_side/view_message');
 // Route::post('/update-status/{inquiry_id}', [InquiryController::class, 'updateStatus'])->name('update_status');
+Route::post('/reply/{inquiry_id}', [InquiryController::class, 'messageReply'])->name('send_reply');
 
 
 
@@ -160,3 +163,14 @@ Route::get('/service_list/{services_id}/delete', [ContentManagementController::c
 
 Route::get('/service_list/{services_id}/edit', [ContentManagementController::class, 'edit_service_list'])->name('footer.edit');
 Route::post('service_list/update{id}', [ContentManagementController::class, 'update_service_list'])->name('service_info.update');
+
+Route::get('/admin/cases', [SpecialCasesController::class, 'get_services'])->name('admin.cases');
+Route::post('/add-special-cases', [SpecialCasesController::class, 'store'])->name('cases.store');
+Route::get('/admin/special-cases', [SpecialCasesController::class, 'get_special_cases'])->name('admin_side.cases');
+
+Route::get('/case/{special_case_id}/delete', [SpecialCasesController::class, 'destroy'])->name('case.delete');
+
+
+Route::get('/case/{special_case_id}/edit', [SpecialCasesController::class, 'edit'])->name('special_case.edit');
+Route::post('/case/update{id}', [SpecialCasesController::class, 'update'])->name('case.update');
+

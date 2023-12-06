@@ -16,14 +16,13 @@ class AuthenticateController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstname' => 'required|max:20',
-            'lastname' => 'required|max:20',
-            'username' => 'required|min:8',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'username' => 'required',
             'password' => 'required|min:6|max:12',
             'confirm_password' => 'required|same:password',
             'user_type' => 'nullable|string',
         ], [
-            // Validation error messages...
         ]);
 
         $user = new Users();
@@ -33,7 +32,7 @@ class AuthenticateController extends Controller
         $user->password = bcrypt($request->password);
         $user->confirm_password = bcrypt($request->confirm_password);
         $user->profile = 'default_profile_value';
-        $user->user_type = $request->user_type ?: 'user'; // If user_type is not provided, default to 'user'
+        $user->user_type = $request->user_type ?: 'user'; 
 
         $user->save();
 

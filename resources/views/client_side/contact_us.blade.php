@@ -40,4 +40,22 @@
         </div>
     </div>
     
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function showSuccessMessage() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your message has been sent successfully.',
+            });
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault(); 
+
+            showSuccessMessage();
+        });
+    </script> --}}
+    @include('templates.sweetalert')
+
 @endsection

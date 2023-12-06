@@ -13,7 +13,6 @@ class AppointmentController extends Controller
 {
     public function store_appointment(Request $request)
     {
-        // Validate the input data (add validation rules as needed)
         $request->validate([
             'owner_name' => 'required|string',
             'pet_type' => 'required',
@@ -24,13 +23,13 @@ class AppointmentController extends Controller
             'address' => 'required|string',
             'service' => 'required',
             'status' => 'nullable',
-          
+
         ]);
 
         $appointment = new Appointment();
-        $appointment->user_id = auth()->id(); // Assign the current user's ID
+        $appointment->user_id = auth()->id();
         $appointment->owner_name = $request->input('owner_name');
-        $appointment->appointment_date = $request->input('appointment_date'); // Save the selected date
+        $appointment->appointment_date = $request->input('appointment_date');
         $appointment->pet_type = $request->input('pet_type');
         $appointment->contact = $request->input('contact');
         $appointment->breed = $request->input('breed');
@@ -39,11 +38,9 @@ class AppointmentController extends Controller
         $appointment->address = $request->input('address');
         $appointment->service = $request->input('service');
         $appointment->status = $request->input('status', 0);
-      
+
 
         $appointment->save();
-
-        // Redirect to a success page or return a response
         return redirect()->back()->with('success', 'Appointment booked successfully');
     }
 
@@ -54,7 +51,6 @@ class AppointmentController extends Controller
         return view('admin_side.list_appointments', compact('appointments'));
     }
 
-    //client_side appointment form
     public function showAppointmentForm()
     {
         $categories = Category::all();
@@ -62,10 +58,8 @@ class AppointmentController extends Controller
         return view('client_side.appointment', compact('services', 'categories'));
     }
 
-    //showdetails on the edit_client_status blade 
     public function showDetails($client_id)
     {
-        // Fetch appointment details using the $client_id
         $appointment = Appointment::where('client_id', $client_id)->first();
 
         return view('admin_side.edit_client_status', compact('appointment'));
@@ -76,13 +70,12 @@ class AppointmentController extends Controller
     {
         $request->validate([
             'status' => 'required|in:0,1,2',
-            'comment' => 'nullable|string', // Add this line
+            'comment' => 'nullable|string',
         ]);
 
-        // Update the status of the appointment
         $appointment = Appointment::where('client_id', $client_id)->first();
         $appointment->status = $request->input('status');
-        $appointment->comment = $request->input('comment'); // Add this line
+        $appointment->comment = $request->input('comment');
         $appointment->save();
 
         return redirect()->back()->with('success', 'Status updated successfully');
@@ -96,7 +89,6 @@ class AppointmentController extends Controller
     //client_side my appointments
     public function getClientAppointments()
     {
-        // Retrieve appointments for the current user
         $userAppointments = Appointment::where('user_id', auth()->id())->get();
 
         return view('client_side.my_appointments', ['userAppointments' => $userAppointments]);

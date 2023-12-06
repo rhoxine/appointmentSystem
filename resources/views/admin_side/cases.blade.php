@@ -27,14 +27,42 @@
                                         aria-label="Close"></button>
                                 </div>
 
-                                <form action="" method="">
+                                <form action="{{ route('cases.store') }}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-outline">
-                                            <input type="text" name="category_name" id="typeText"
+                                            <input type="text" name="owner_name" id="typeText"
                                                 class="form-control" />
-                                            <label class="form-label" for="typeText">Category name</label>
+                                            <label class="form-label" for="typeText">Owner name</label>
                                         </div>
+                                        <div class="form-outline mt-2">
+                                            <input type="text" name="pet_name" id="typeText"
+                                                class="form-control" />
+                                            <label class="form-label" for="typeText">Pet name</label>
+                                        </div>
+                                        <div class="form-outline mt-2">
+                                            <input type="text" name="age" id="typeText"
+                                                class="form-control" />
+                                            <label class="form-label" for="typeText">Age</label>
+                                        </div>
+                                        <div class="form-outline mt-2">
+                                            <input type="text" name="pet_type" id="typeText"
+                                                class="form-control" />
+                                            <label class="form-label" for="typeText">Pet Type</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <select class="form-select mt-3" name="service_id"
+                                                aria-label="Small select example">
+                                                <option selected>Select a Service</option>
+                                                @foreach ($services as $service)
+                                                    <option value="{{ $service->service_id }}">
+                                                        {{ $service->service }}</option>
+                                                @endforeach
+                                            </select>
+
+                                        </div>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -52,7 +80,11 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Category Name</th>
+                        <th>Owner Name</th>
+                        <th>Pet Name</th>
+                        <th>Age</th>
+                        <th>Pet Type</th>
+                        <th>Service Availed</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -60,17 +92,29 @@
 
                 <tbody>
                     
+                    <?php $count = 1; ?>
+                    @foreach ($cases as $case)
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $count }}</td>
+                            <td>{{ $case->owner_name }}</td>
+                            <td>{{ $case->pet_name}}</td>
+                            <td>{{ $case->age }}</td>
+                            <td>{{ $case->pet_type }}</td>
+                            <td>
+                                @foreach ($services as $service)
+                                    @if ($service->service_id === $case->service_id)
+                                        {{ $service->service }}
+                                    @endif
+                                @endforeach
+                            </td>
 
                             <td>
                                 <a href="#" class="btn btn-primary" data-mdb-toggle="modal"
-                                    data-mdb-target="#editCategoryModal">
+                                    data-mdb-target="#editCaseModal{{ $case->special_case_id }}">
                                     <i class="fa fa-edit"></i>
                                 </a>
 
-                                <a href=""
+                                <a href="{{ route('case.delete', ['special_case_id' => $case->special_case_id]) }}"
                                     class="btn btn-danger"
                                     onclick="return confirm('Are you sure you want to delete this category?');">
                                     <i class="fa fa-trash"></i>
@@ -79,28 +123,43 @@
                             </td>
                           
                         </tr>
+                        <?php $count++ ; ?>
+                        @endforeach
                     
-                        <div class="modal fade" id="editCategoryModal" tabindex="-1"
-                            aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+                        @foreach ($cases as $special_case)
+                        <div class="modal fade" id="editCaseModal{{ $special_case->special_case_id }}" tabindex="-1"
+                            aria-labelledby="editCaseModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                                        <h5 class="modal-title" id="editCaseModalLabel">Edit Case</h5>
                                         <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form action=""
+                                    <form action="{{ route('case.update', ['id' => $special_case->special_case_id]) }}"
                                         method="POST">
 
                                         @csrf
                                         <div class="modal-body">
-                                            <input type="hidden" name="category_id"
+                                            <input type="hidden" name="special_case_id"
                                                 value="">
                                             <div class="form-outline">
-                                                <input type="text" name="category_name"
+                                                <input type="text" name="owner_name"
                                                     value="" id="typeText"
                                                     class="form-control" />
-                                                <label class="form-label" for="typeText">Firstname</label>
+                                                <label class="form-label" for="typeText">owner Name</label>
+                                            </div>
+                                            <div class="form-outline">
+                                                <input type="text" name="pet_name"
+                                                    value="" id="typeText"
+                                                    class="form-control" />
+                                                <label class="form-label" for="typeText">Pet Name</label>
+                                            </div>
+                                            <div class="form-outline">
+                                                <input type="text" name="age"
+                                                    value="" id="typeText"
+                                                    class="form-control" />
+                                                <label class="form-label" for="typeText">Age</label>
                                             </div>
 
                                         </div>
@@ -114,7 +173,7 @@
                             </div>
                         </div>
                     
-
+                        @endforeach
                 </tbody>
             </table>
 

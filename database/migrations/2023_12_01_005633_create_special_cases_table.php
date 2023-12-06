@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inquiries', function (Blueprint $table) {
-            $table->increments('inquiry_id');
-            $table->integer('user_id');
-            $table->string('name');
-            $table->string('email');
-            $table->string('message');
-            $table->text('reply')->nullable();
+        Schema::create('special_cases', function (Blueprint $table) {
+            $table->increments('special_case_id');
+            $table->integer('service_id');
+            $table->string('owner_name');
+            $table->string('pet_name');
+            $table->integer('age');
+            $table->string('pet_type');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inquiries');
+        Schema::dropIfExists('special_cases');
     }
 };

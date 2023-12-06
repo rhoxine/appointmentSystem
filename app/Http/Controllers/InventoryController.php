@@ -18,7 +18,6 @@ class InventoryController extends Controller
         ]);
 
         if ($request->hasFile('product_image')) {
-            // $product_imagePath = $request->file('profile')->store('profiles', 'public');
             $product_imagePath = $request->file('product_image')->store('profiles', 'public');
 
         } else {
@@ -37,11 +36,10 @@ class InventoryController extends Controller
     }
 
     public function get_products()
-{
-    $products = Inventory::all();
-    // dd($products); // Uncomment this line for debugging
-    return view('admin_side.inventory', compact('products'));
-}
+    {
+        $products = Inventory::all();
+        return view('admin_side.inventory', compact('products'));
+    }
 
 
 
@@ -85,22 +83,4 @@ class InventoryController extends Controller
             return redirect('/inventory')->with('error', 'Product not found');
         }
     }
-
-
-    // public function updateQuantity(Request $request)
-    // {
-    //     $productId = $request->input('product_id');
-    //     $quantity = $request->input('quantity');
-    
-    //     $product = Inventory::find($productId);
-    
-    //     if ($product) {
-    //         $product->quantity = $quantity;
-    //         $product->save();
-    //         return response()->json(['message' => 'Quantity updated successfully']);
-    //     } else {
-    //         return response()->json(['message' => 'Product not found'], 404);
-    //     }
-    // }
-
 }

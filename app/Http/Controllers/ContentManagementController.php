@@ -43,14 +43,12 @@ class ContentManagementController extends Controller
 
     public function get_footer()
     {
-        // Get all users excluding those with the user type 'admin'
         $footers = Footer::all();
         return view('admin_side.content_management.footer_list', compact('footers'));
     }
 
     public function edit($footer_id)
     {
-        // $service = DB::select("SELECT * FROM services WHERE service_id = ?", [$service_id]);
         $footer = Footer::find($footer_id);
         return view('footer.edit', compact('footer'));
     }
@@ -91,7 +89,6 @@ class ContentManagementController extends Controller
             $imagePath = null;
         }
 
-        // Create a new user in the database
         ManageServices::create([
             'service_name' => $request->input('service_name'),
             'fee' => $request->input('fee'),
@@ -131,7 +128,7 @@ class ContentManagementController extends Controller
 
     public function edit_service_list($services_id)
     {
-        // $service = DB::select("SELECT * FROM services WHERE service_id = ?", [$service_id]);
+
         $services = ManageServices::find($services_id);
         return view('services_list.edit', compact('services'));
     }
