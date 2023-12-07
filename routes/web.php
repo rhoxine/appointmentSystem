@@ -28,9 +28,9 @@ use App\Http\Controllers\SpecialCasesController;
 
 
 // login route
-Route::get('/', function() {
-    return view('client_side.login_page');
-});
+// Route::get('/', function() {
+//     return view('client_side.login_page');
+// });
 
 
 Route::get('/contact', function () {
@@ -146,6 +146,7 @@ Route::get('/client/appointments', [AppointmentController::class, 'getClientAppo
 
 
 Route::post('/logout', [AuthenticateController::class, 'logout'])->name('logout');
+Route::get('/', [ContentManagementController::class, 'getHomepage']);
 Route::get('/homepage', [ContentManagementController::class, 'getHomepage']);
 
 
