@@ -133,13 +133,13 @@
                                                     </div>
                                                     <div class="form-outline mt-3">
                                                         <input type="text" name="email_address"
-                                                            value="{{ $footer->location }}" id="typeText"
+                                                            value="{{ $footer->email_address }}" id="typeText"
                                                             class="form-control" />
                                                         <label class="form-label" for="typeText">Email Address</label>
                                                     </div>
                                                     <div class="form-outline mt-3">
                                                         <input type="text" name="location"
-                                                            value="{{ $footer->work_hours }}" id="typeText"
+                                                            value="{{ $footer->location }}" id="typeText"
                                                             class="form-control" />
                                                         <label class="form-label" for="typeText">Location</label>
                                                     </div>
